@@ -16,4 +16,8 @@ int controller_ModificarValorDeAtaque(LinkedList* listaMain);
 
 int controller_listar(LinkedList* listaMain);
 
+int controller_filtrarPorFuego(LinkedList* listaMain);
+
+int controller_filtrarExtragrandesVenenosos(LinkedList* listaMain);
+
 #endif /* CONTROLLER_H_ */

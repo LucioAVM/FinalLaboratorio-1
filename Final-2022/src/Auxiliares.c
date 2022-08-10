@@ -5,7 +5,7 @@ int auxiliares_mostrarPokemones(LinkedList* listaMain)
 	int retorno = 0;
 	int tam;
 
-	ePokemones* pokemon;
+	ePokemones* pokemon = NULL;
 
 	tam = ll_len(listaMain);
 
@@ -21,11 +21,8 @@ int auxiliares_mostrarPokemones(LinkedList* listaMain)
 			break;
 		}
 	}
-
-
 	return retorno;
 }
-
 
 int auxiliares_mostrarUnPokemon(ePokemones* pokemon)
 {
@@ -39,13 +36,13 @@ int auxiliares_mostrarUnPokemon(ePokemones* pokemon)
 	int valorAtaque;
 	int esVarioColor;
 
-	if(pokemon_GetID(&id, pokemon) == 0
-			&& pokemon_GetNombre(nombre, pokemon) == 0
-			&& pokemon_GetTipo(tipo, pokemon) == 0
-			&& pokemon_GetTamanio(tamanio, pokemon) == 0
-			&& pokemon_GetAtaque(ataqueCargado, pokemon) == 0
-			&& pokemon_GetValorAtaque(&valorAtaque, pokemon) == 0
-			&& pokemon_GetColor(&esVarioColor, pokemon) == 0)
+	if(!(pokemon_GetID(&id, pokemon) != 0
+			&& pokemon_GetNombre(nombre, pokemon) != 0
+			&& pokemon_GetTipo(tipo, pokemon) != 0
+			&& pokemon_GetTamanio(tamanio, pokemon) != 0
+			&& pokemon_GetAtaque(ataqueCargado, pokemon) != 0
+			&& pokemon_GetValorAtaque(&valorAtaque, pokemon) != 0
+			&& pokemon_GetColor(&esVarioColor, pokemon) != 0))
 	{
 		printf("%-5d - %-30s - %10s - %-5s - %-20s - %-15d - %-5d\n",id, nombre, tipo, tamanio, ataqueCargado, valorAtaque, esVarioColor);
 		retorno = 0;

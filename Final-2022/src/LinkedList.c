@@ -593,7 +593,7 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
  * @param this
  * @param pFuncion
  * @return LL con totales
- *//*
+ */
 LinkedList* ll_map(LinkedList* this,int (pFuncion)(void*))
 {
 	LinkedList* pLista = ll_newLinkedList();
@@ -618,7 +618,7 @@ LinkedList* ll_map(LinkedList* this,int (pFuncion)(void*))
 	}
 	return pLista;
 }
-*/
+
 /**
  * @brief itera todos los elementos del array y los filtra por pFunc
  *

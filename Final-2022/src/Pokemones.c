@@ -17,13 +17,13 @@ ePokemones* pokemon_newParametros(char* ID, char* nombre, char* tipo, char* tama
 
 	if(this != NULL)
 	{
-		if(!(pokemon_SetID(atoi(ID), this) == 0
-				&& pokemon_SetNombre(nombre, this) == 0
-				&& pokemon_SetTipo(tipo, this) == 0
-				&& pokemon_SetTamanio(tamanio, this) == 0
-				&& pokemon_SetAtaque(ataqueCargado, this) == 0
-				&& pokemon_SetValorAtaque(atoi(valorAtaque), this) == 0
-				&& pokemon_SetColor(atoi(esVarioColor), this) == 0))
+		if(pokemon_SetID(atoi(ID), this) != 0
+				&& pokemon_SetNombre(nombre, this) != 0
+				&& pokemon_SetTipo(tipo, this) != 0
+				&& pokemon_SetTamanio(tamanio, this) != 0
+				&& pokemon_SetAtaque(ataqueCargado, this) != 0
+				&& pokemon_SetValorAtaque(atoi(valorAtaque), this) != 0
+				&& pokemon_SetColor(atoi(esVarioColor), this) != 0)
 		{
 			pokemon_Delete(this);
 		}
@@ -46,7 +46,6 @@ int pokemon_SetID(int id, ePokemones* this)
 
 	if(id > 0 && this != NULL)
 	{
-		printf("%d id\n", id);
 		this->id = id;
 		retorno = 0;
 	}
@@ -59,10 +58,10 @@ int pokemon_GetID(int* id, ePokemones* this)
 
 	if(id != NULL && this != NULL)
 	{
+		printf("%d id\n", *id);
 		*id = this->id;
 		retorno = 0;
 	}
-
 	return retorno;
 }
 
@@ -72,11 +71,9 @@ int pokemon_SetNombre(char* descripcion, ePokemones* this)
 
 	if(descripcion != NULL && this != NULL)
 	{
-		printf("%s nombre \n",descripcion);
 		strcpy(this->nombre, descripcion);
 		retorno = 0;
 	}
-
 	return retorno;
 }
 int pokemon_GetNombre(char* descripcion, ePokemones* this)
@@ -85,10 +82,10 @@ int pokemon_GetNombre(char* descripcion, ePokemones* this)
 
 	if(descripcion != NULL && this != NULL)
 	{
+		printf("%s nombre \n",descripcion);
 		strcpy(descripcion, this->nombre);
 		retorno = 0;
 	}
-
 	return retorno;
 }
 
@@ -98,11 +95,9 @@ int pokemon_SetTipo(char* descripcion, ePokemones* this)
 
 	if(descripcion != NULL && this != NULL)
 	{
-		printf("%s tipo \n",descripcion);
 		strcpy(this->tipo, descripcion);
 		retorno = 0;
 	}
-
 	return retorno;
 }
 int pokemon_GetTipo(char* descripcion, ePokemones* this)
@@ -213,6 +208,60 @@ int pokemon_GetColor(int* color, ePokemones* this)
 	{
 		*color = this->esVarioColor;
 		retorno = 0;
+	}
+	return retorno;
+}
+
+int pokemones_filtrar(LinkedList* listaMain, int opcion)
+{
+	int retorno = -1;
+
+	int (*pFuncion)(void*);
+
+	switch(opcion)
+	{
+	case 1:
+		pFuncion = pokemon_filtrarPorFuego;
+		break;
+	case 2:
+		pFuncion = pokemon_filtrarPorExtraGrandeVeneno;
+		break;
+	}
+	retorno = ll_filter(listaMain, pFuncion);
+
+	return retorno;
+}
+
+int pokemon_filtrarPorFuego(void* primero)
+{
+	int retorno = -1;
+	char primerTipo[30];
+
+	if(primero != NULL )
+	{
+		pokemon_GetTipo(primerTipo, primero);
+
+		retorno = strcmp(primerTipo, "Fire");
+	}
+	return retorno;
+}
+
+int pokemon_filtrarPorExtraGrandeVeneno(void* primero)
+{
+	int retorno = -1;
+
+	char primerTipo[30];
+	char primerTam[4];
+
+	if(primero != NULL)
+	{
+		pokemon_GetTipo(primerTipo, primero);
+		pokemon_GetTamanio(primerTam, primero);
+
+		if(strcmp(primerTam, "XL") == 0)
+		{
+			retorno = strcmp(primerTipo, "Poison");
+		}
 	}
 	return retorno;
 }

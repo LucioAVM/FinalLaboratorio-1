@@ -42,12 +42,16 @@ int main(void)
 
 
 		case 3:
-			validacion = controller_ModificarValorDeAtaque(listaMain);
-			mostrarMensaje("se modifico correctamente el pokemon", "no se pudo modificar", validacion);
+			validacion = controller_listar(listaMain);
+			mostrarMensaje("", "no se pudo listar", validacion);
 			break;
 		case 4:
+			validacion = controller_filtrarPorFuego(listaMain);
+			mostrarMensaje("se filtro correctamente, opcion 3 para listar", "no se pudo filtrar", validacion);
 			break;
 		case 5:
+			validacion = controller_filtrarExtragrandesVenenosos(listaMain);
+			mostrarMensaje("se filtro correctamente, opcion 3 para listar", "no se pudo filtrar", validacion);
 			break;
 		case 6:
 			break;

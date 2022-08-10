@@ -57,3 +57,37 @@ int controller_listar(LinkedList* listaMain)
 	}
 	return retorno;
 }
+
+
+int controller_filtrarPorFuego(LinkedList* listaMain)
+{
+	int retorno = -1;
+
+	if(ll_isEmpty(listaMain) == 0)
+	{
+		retorno = pokemones_filtrar(listaMain, 1);
+	}
+	return retorno;
+}
+
+int controller_filtrarExtragrandesVenenosos(LinkedList* listaMain)
+{
+	int retorno = -1;
+
+	if(ll_isEmpty(listaMain) == 0)
+	{
+		retorno = pokemones_filtrar(listaMain, 2);
+	}
+	return retorno;
+}
+
+int controller_mapeado(LinkedList* listaMain)
+{
+	int retorno = -1;
+
+	if(ll_isEmpty(listaMain) == 0)
+	{
+		retorno = ;
+	}
+	return retorno;
+}

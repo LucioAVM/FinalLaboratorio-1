@@ -51,4 +51,10 @@ int pokemon_SetColor(int color, ePokemones* this);
 
 int pokemon_GetColor(int* color, ePokemones* this);
 
+int pokemones_filtrar(LinkedList* listaMain, int opcion);
+
+int pokemon_filtrarPorFuego(void* primero);
+
+int pokemon_filtrarPorExtraGrandeVeneno(void* primero);
+
 #endif /* POKEMONES_H_ */
